@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace RefRestrict
 {
@@ -10,7 +11,15 @@ namespace RefRestrict
     {
         static int Main(string[] args)
         {
-            Console.WriteLine("ERROR: The reference RR.Core is not valid in project RR.Data");
+            if (args.Count() < 1 || !File.Exists(args[0]))
+            {
+                Console.WriteLine("ERROR: Unable to load project file");
+                return 2;
+            }
+
+            var refs = ProjectFileParser.References(args[0]);
+
+            refs.ForEach(x => Console.WriteLine("ERROR: Detected ref " + x));
             return 67;
         }
     }
