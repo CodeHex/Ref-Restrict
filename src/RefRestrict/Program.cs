@@ -21,7 +21,7 @@ namespace RefRestrict
 
             if (!ruleinfo.HasRules(refinfo.Name))
             {
-                Console.WriteLine("WARNING: No Reference Rules defined for project " + refinfo.Name);
+                Console.WriteLine("WARNING: Ref-Restrict : No reference rules defined for project " + refinfo.Name);
                 return 0;
             }
 
