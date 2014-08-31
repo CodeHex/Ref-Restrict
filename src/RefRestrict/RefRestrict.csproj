@@ -43,16 +43,19 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectFileParser.cs" />
-    <Compile Include="ProjectRefInfo.cs" />
+    <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefAnaylser.cs" />
     <Compile Include="RuleInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(TargetPath) $(ProjectDir)\..\..\RefRestrictDemo\</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

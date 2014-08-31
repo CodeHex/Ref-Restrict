@@ -121,6 +121,16 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RR.Core\RR.Core.csproj">
+      <Project>{20c14458-f6bb-48d9-ba54-c06d4867561d}</Project>
+      <Name>RR.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RR.Data\RR.Data.csproj">
+      <Project>{f48973ea-2b2b-4f46-bb4c-6363d9a389af}</Project>
+      <Name>RR.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

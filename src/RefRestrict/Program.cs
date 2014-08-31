@@ -11,39 +11,67 @@ namespace RefRestrict
     {
         static int Main(string[] args)
         {
-            var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RefRestrict.config");
-
-            if (!CheckArguments(args) || !CheckConfig(configPath)) 
+            string configFile;
+            if (!CheckArguments(args, out configFile)) 
                 return 1;
 
-            var refinfo = ProjectFileParser.References(args[0]);
-            var ruleinfo = new RefRuleInfo(configPath);
+            var projInfo = ProjectFileParser.References(args[0]);
+            var ruleSet = new RefRuleSet(configFile, projInfo.Name);
 
-            if (!ruleinfo.HasRules(refinfo.Name))
+            if (!ruleSet.IsRuleSetFoundInConfig)
             {
-                Console.WriteLine("WARNING: Ref-Restrict : No reference rules defined for project " + refinfo.Name);
+                Console.WriteLine("WARNING: Ref-Restrict : No reference rules defined for project " + projInfo.Name);
                 return 0;
             }
-
-
-            refinfo.References.ForEach(x => Console.WriteLine("ERROR: Detected ref " + x));
-            return 67;
+            else
+            {
+                var allRulesOk = true;
+                foreach (var rule in ruleSet.Rules)
+                {
+                    string err;
+                    var passed = RefAnaylser.CheckRule(projInfo, rule, out err);
+                    if (!passed)
+                    {
+                        allRulesOk = false;
+                        Console.WriteLine("ERROR: " + err);
+                    }
+                }
+                if (!allRulesOk)
+                    return 1;
+            }
+            return 0;
         }
 
-        private static bool CheckArguments(string[] args)
+        private static bool CheckArguments(string[] args, out string configPath)
         {
-            var validArgs = args.Count() >= 1 && File.Exists(args[0]);
-            if (!validArgs)
+            configPath = null;
+            var validprojFile = args.Count() >= 1 && File.Exists(args[0]);
+            if (!validprojFile)
+            {
                 Console.WriteLine("ERROR: Unable to load project file");
-            return validArgs;
+                return false;
+            }
+
+            configPath = GetConfigFile(args);
+
+            if (configPath == null)
+            {
+                Console.WriteLine("ERROR: Unable to locate configuration file");
+                return false;
+            }
+            return true;
         }
 
-        private static bool CheckConfig(string configPath)
+        private static string GetConfigFile(string[] args)
         {
-            var fileFound = File.Exists(configPath);
-            if (!fileFound)
-                Console.WriteLine("ERROR: Unable to load configuration file");
-            return fileFound;
+            if ((args.Count() >= 2 && File.Exists(args[1])))
+                return args[1];
+               
+            var localConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RefRestrict.config");
+            if (File.Exists(localConfigPath))
+                return localConfigPath;
+
+            return null;
         }
     }
 }
