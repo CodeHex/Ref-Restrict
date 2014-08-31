@@ -33,17 +33,22 @@ namespace RefRestrict
     {
         public RuleType Type { get; set; }
         public string Value { get; set; }
+        public List<string> Values { get; set; }
 
-        public static RefRule CreateRuleFromElement(XElement elememt)
+        public static RefRule CreateRuleFromElement(XElement element)
         {
-            if (elememt.Name == "norefs")
-                return new RefRule { Type = RuleType.NoProjectReference };
+            if (element.Name == "nolocalrefs" || element.Name == "onlylocalrefs")
+            {
+                var rule = new RefRule { Type = RuleType.OnlyLocalReferences };
+                rule.Values = element.Elements("project").Select(x => x.Value).ToList();
+                return rule;
+            }
 
-            var newRule = new RefRule { Value = elememt.Value, Type = RuleType.Unknown };
-            if (elememt.Name == "include")
+            var newRule = new RefRule { Value = element.Value, Type = RuleType.Unknown };
+            if (element.Name == "include")
                 newRule.Type = RuleType.Include;
 
-            if (elememt.Name == "exclude")
+            if (element.Name == "exclude")
                 newRule.Type = RuleType.Exclude;
 
             return newRule;
@@ -54,7 +59,7 @@ namespace RefRestrict
     {
         Include,
         Exclude,
-        NoProjectReference,
+        OnlyLocalReferences,
         Unknown
     }
 }

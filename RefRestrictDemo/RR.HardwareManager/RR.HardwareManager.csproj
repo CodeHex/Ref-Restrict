@@ -42,6 +42,12 @@
     <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RR.HardwareDriver\RR.HardwareDriver.csproj">
+      <Project>{c87bad01-87ab-4c5e-939f-0217cd90a1e9}</Project>
+      <Name>RR.HardwareDriver</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>call $(SolutionDir)\RefRestrict.exe $(ProjectPath)</PreBuildEvent>

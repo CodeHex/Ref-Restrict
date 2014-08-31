@@ -42,6 +42,24 @@
     <Compile Include="Container.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RR.Core\RR.Core.csproj">
+      <Project>{20c14458-f6bb-48d9-ba54-c06d4867561d}</Project>
+      <Name>RR.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RR.Data\RR.Data.csproj">
+      <Project>{f48973ea-2b2b-4f46-bb4c-6363d9a389af}</Project>
+      <Name>RR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RR.HardwareManager\RR.HardwareManager.csproj">
+      <Project>{4f077c5b-7b09-4283-8350-90d80de21d1b}</Project>
+      <Name>RR.HardwareManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RR.Service\RR.Service.csproj">
+      <Project>{36ccaf99-c0e7-4391-93fc-48955fbdc8ef}</Project>
+      <Name>RR.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>call $(SolutionDir)\RefRestrict.exe $(ProjectPath)</PreBuildEvent>

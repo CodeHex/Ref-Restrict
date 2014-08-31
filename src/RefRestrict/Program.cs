@@ -13,7 +13,7 @@ namespace RefRestrict
         {
             string configFile;
             if (!CheckArguments(args, out configFile)) 
-                return 1;
+                return 0;
 
             var projInfo = ProjectFileParser.References(args[0]);
             var ruleSet = new RefRuleSet(configFile, projInfo.Name);
@@ -25,19 +25,15 @@ namespace RefRestrict
             }
             else
             {
-                var allRulesOk = true;
                 foreach (var rule in ruleSet.Rules)
                 {
                     string err;
                     var passed = RefAnaylser.CheckRule(projInfo, rule, out err);
                     if (!passed)
                     {
-                        allRulesOk = false;
                         Console.WriteLine("ERROR: " + err);
                     }
                 }
-                if (!allRulesOk)
-                    return 1;
             }
             return 0;
         }

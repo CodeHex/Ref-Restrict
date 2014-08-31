@@ -126,9 +126,9 @@
       <Project>{20c14458-f6bb-48d9-ba54-c06d4867561d}</Project>
       <Name>RR.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RR.Data\RR.Data.csproj">
-      <Project>{f48973ea-2b2b-4f46-bb4c-6363d9a389af}</Project>
-      <Name>RR.Data</Name>
+    <ProjectReference Include="..\RR.Installer\RR.Installer.csproj">
+      <Project>{ac0bdd8f-a727-4f6e-ada4-5108681b2b10}</Project>
+      <Name>RR.Installer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
