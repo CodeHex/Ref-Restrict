@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
-using Microsoft.Build.Evaluation;
+using System.Xml.Linq;
 
 namespace RefRestrict
 {
     public static class ProjectFileParser
     {
-        public static List<string> References(string projectFilePath)
+        public static ProjectRefInfo References(string projectFilePath)
         {
-            var project = new Project(projectFilePath);
-            return project.AllEvaluatedItems
-                .Where(y => y.ItemType == "Reference")
-                .Select(x => x.EvaluatedInclude).ToList();
+            var doc = XDocument.Load(projectFilePath);
+            var refs = doc.Descendants().Where(x => x.Name.LocalName == "Reference")
+                                        .Select(x => x.Attribute("Include").Value)
+                                        .ToList();
+            var projName = doc.Descendants()
+                              .First(x => x.Name.LocalName == "AssemblyName")
+                              .Value;
+
+            return new ProjectRefInfo(projName, refs);
         }
     }
 }

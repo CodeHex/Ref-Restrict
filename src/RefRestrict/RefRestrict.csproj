@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectFileParser.cs" />
+    <Compile Include="ProjectRefInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

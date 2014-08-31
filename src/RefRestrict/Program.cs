@@ -11,16 +11,39 @@ namespace RefRestrict
     {
         static int Main(string[] args)
         {
-            if (args.Count() < 1 || !File.Exists(args[0]))
+            var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RefRestrict.config");
+
+            if (!CheckArguments(args) || !CheckConfig(configPath)) 
+                return 1;
+
+            var refinfo = ProjectFileParser.References(args[0]);
+            var ruleinfo = new RefRuleInfo(configPath);
+
+            if (!ruleinfo.HasRules(refinfo.Name))
             {
-                Console.WriteLine("ERROR: Unable to load project file");
-                return 2;
+                Console.WriteLine("WARNING: No Reference Rules defined for project " + refinfo.Name);
+                return 0;
             }
 
-            var refs = ProjectFileParser.References(args[0]);
 
-            refs.ForEach(x => Console.WriteLine("ERROR: Detected ref " + x));
+            refinfo.References.ForEach(x => Console.WriteLine("ERROR: Detected ref " + x));
             return 67;
+        }
+
+        private static bool CheckArguments(string[] args)
+        {
+            var validArgs = args.Count() >= 1 && File.Exists(args[0]);
+            if (!validArgs)
+                Console.WriteLine("ERROR: Unable to load project file");
+            return validArgs;
+        }
+
+        private static bool CheckConfig(string configPath)
+        {
+            var fileFound = File.Exists(configPath);
+            if (!fileFound)
+                Console.WriteLine("ERROR: Unable to load configuration file");
+            return fileFound;
         }
     }
 }
