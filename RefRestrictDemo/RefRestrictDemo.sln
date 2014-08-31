@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RR.Service", "RR.Service\RR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE7E3458-D031-472C-8F25-382879F8933D}"
 	ProjectSection(SolutionItems) = preProject
-		RefRestrict.config = RefRestrict.config
+		RefRestrict.config.xml = RefRestrict.config.xml
 	EndProjectSection
 EndProject
 Global

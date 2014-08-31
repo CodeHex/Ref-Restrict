@@ -52,6 +52,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="RefRestrict.config.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

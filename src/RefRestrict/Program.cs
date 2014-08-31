@@ -63,7 +63,7 @@ namespace RefRestrict
             if ((args.Count() >= 2 && File.Exists(args[1])))
                 return args[1];
                
-            var localConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RefRestrict.config");
+            var localConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RefRestrict.config.xml");
             if (File.Exists(localConfigPath))
                 return localConfigPath;
 

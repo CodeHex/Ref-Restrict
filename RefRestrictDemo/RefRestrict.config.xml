@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rrconfig>
+  <!-- The core library should have no local dependencies and not have any references to data access libraries -->
+  <!-- Data access libraries should not be included as data access should be in the data library -->
+  <rules project="RR.Core">
+    <nolocalrefs/>
+    <exclude>EntityFramework</exclude>
+    <exclude>EntityFramework.SqlServer</exclude>
+  </rules>
+
+  <!-- The data library should only have access to the core library and no other local libs. -->
+  <!-- Data access libraries should definitely be included -->
+  <rules project="RR.Data">
+    <onlylocalrefs>
+      <project>RR.Core</project>
+    </onlylocalrefs>
+    <include>EntityFramework</include>
+    <include>EntityFramework.SqlServer</include>
+  </rules>
+
+  <!-- The service library should only have access to the core library and no other local libs. -->
+  <!-- Data access libraries should not be included as data access should be in the data library -->
+  <rules project="RR.Service">
+    <onlylocalrefs>
+      <project>RR.Core</project>
+    </onlylocalrefs>
+    <exclude>EntityFramework</exclude>
+    <exclude>EntityFramework.SqlServer</exclude>
+  </rules>
+
+  <!-- The installer library should have access to all local libraries it will need to compose the application objects. -->
+  <!-- It may or may not need specific data access libraries to create these objects, so no restrictions are placed -->
+  <rules project="RR.Installer">
+    <onlylocalrefs>
+      <project>RR.Core</project>
+      <project>RR.Data</project>
+      <project>RR.HardwareManager</project>
+      <project>RR.Service</project>
+    </onlylocalrefs>
+  </rules>
+
+  <!-- The hardware library should have access to the core library and hardware driver so it can drive the hardware. -->
+  <!-- Data access libraries should not be included as data access should be in the data library -->
+  <rules project="RR.HardwareManager">
+    <onlylocalrefs>
+      <project>RR.Core</project>
+      <project>RR.HardwareDriver</project>
+    </onlylocalrefs>
+
+    <exclude>EntityFramework</exclude>
+    <exclude>EntityFramework.SqlServer</exclude>
+  </rules>
+  
+  <!-- The hardware driver library is a low level library that should have no local dependancies -->
+  <!-- Since its low-level library there are no restrictions on other references it can use -->
+  <rules project="RR.HardwareDriver">
+    <nolocalrefs/>
+  </rules>
+
+  <!-- The web server project is the point of entry for the application. It will need the Installer project to act as the root of composition and core library -->
+  <!-- Data access libraries should not be included as data access should be in the data library -->
+  <rules project="RR.WebServer">
+    <onlylocalrefs>
+      <project>RR.Core</project>
+      <project>RR.Installer</project>
+    </onlylocalrefs>
+  </rules>
+</rrconfig>

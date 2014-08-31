@@ -43,6 +43,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RR.Core\RR.Core.csproj">
+      <Project>{20c14458-f6bb-48d9-ba54-c06d4867561d}</Project>
+      <Name>RR.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RR.HardwareDriver\RR.HardwareDriver.csproj">
       <Project>{c87bad01-87ab-4c5e-939f-0217cd90a1e9}</Project>
       <Name>RR.HardwareDriver</Name>
