@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>RefRestrict</id>
+        <version>1.0.0</version>
+        <title>Ref Restrict</title>
+        <authors>Ben Ibinson</authors>
+        <owners>Ben Ibinson</owners>
+        <projectUrl>https://github.com/CodeHex/Ref-Restrict</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Provides reference restrictions for projects. Modify the RefRestrict.Config.xml file in to the Solution Items folder to apply reference restrictions that will be checked everytime the project is built.</description>
+        <language>en-GB</language>
+        <tags>Reference</tags>
+    </metadata>
+    <files>
+        <file src="tools\init.ps1" target="tools\init.ps1" />
+        <file src="tools\install.ps1" target="tools\install.ps1" />
+        <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
+    </files>
+</package>
