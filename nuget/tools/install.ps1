@@ -9,24 +9,43 @@ $solutionFolder = $solution.Projects | where-object { $_.ProjectName -eq "Soluti
 if(!$solutionFolder) {
 	$solutionFolder = $solution.AddSolutionFolder("Solution Items")
 }
-$solItems = Get-Interface $solutionFolder.ProjectItems ([EnvDTE.ProjectItems])
 
 
-# Copy the exe and xml to the solution folder
+# Copy the exe solution folder (overwrite any existing exe)
 $refRestrictExe = join-path $installPath 'tools/RefRestrict.exe'
 Copy-Item $refRestrictExe $rootdir
 
-$refRestrictXml = join-path $installPath 'tools/RefRestrict.config.xml'
-Copy-Item $refRestrictXml $rootdir
-
-# Add a file to the child solution folder.
+# Copy the blank xml file if it doesn't exist
 $solPath = Split-Path -parent $dte.Solution.FileName
 $configfile = $solPath + "\RefRestrict.config.xml"
 
-$solItems.AddFromFile($configfile) > $null
+if(!(Test-Path $configfile)) {
+    # Copy blank config file
+	$refRestrictXml = join-path $installPath 'tools/RefRestrict.config.xml'
+	Copy-Item $refRestrictXml $rootdir
+	
+	# Add a file to the Solution Items folder.
+	$solItems = Get-Interface $solutionFolder.ProjectItems ([EnvDTE.ProjectItems])
+    $solItems.AddFromFile($configfile) > $null
+}
 
 # Remove placeholder file
 $placeholder = $project.ProjectItems | where-object { $_.Name -eq "rrproj.txt" } | select -first 1
 $placeholder.Delete()
+
+# Add section for project
+$configXml = New-Object XML
+$configXml.Load($configfile)
+$ruleNode = $configXml.CreateElement("rules")
+$ruleNode.SetAttribute("project", $project.ProjectName)
+$ruleData = $configXml.CreateComment("Add rules for project " + $project.ProjectName + " here")
+$ruleNode.AppendChild($ruleData) > $null
+$configXml.DocumentElement.AppendChild($ruleNode) > $null
+$configXml.Save($configfile)
+
+
+
+
+
 
 

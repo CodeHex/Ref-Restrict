@@ -14,8 +14,8 @@
     </metadata>
     <files>
         <file src="content\rrproj.txt" target="content\rrproj.txt" />
-		<file src="tools\RefRestrict.config.xml" target="tools\RefRestrict.config.xml" />
         <file src="tools\install.ps1" target="tools\install.ps1" />
+        <file src="tools\RefRestrict.config.xml" target="tools\RefRestrict.config.xml" />
         <file src="tools\RefRestrict.exe" target="tools\RefRestrict.exe" />
         <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
     </files>
