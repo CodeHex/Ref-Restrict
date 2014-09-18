@@ -13,7 +13,7 @@
         <tags>Reference</tags>
     </metadata>
     <files>
-        <file src="content\rrproj.txt" target="content\rrproj.txt" />
+        <file src="build\RefRestrict.targets" target="build\RefRestrict.targets" />
         <file src="tools\install.ps1" target="tools\install.ps1" />
         <file src="tools\RefRestrict.config.xml" target="tools\RefRestrict.config.xml" />
         <file src="tools\RefRestrict.exe" target="tools\RefRestrict.exe" />

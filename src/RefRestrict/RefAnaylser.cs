@@ -82,7 +82,14 @@ namespace RefRestrict
             // Check if we actually managed to find any rules, and if return a warning.
             if (!ruleset.IsRules)
             {
-                report.Entries.Add(new ReportEntry(ReportLevel.Warning, "Could not find rules for project " + proj.Name));
+                report.Entries.Add(new ReportEntry(ReportLevel.Error, "Configured for " + proj.Name + " but no rules section found, please add rules section or uninstall nuget package from project"));
+                return report;
+            }
+
+            // Check if we actually managed to find any rules but none have been set
+            if (!ruleset.IsRulesSet)
+            {
+                report.Entries.Add(new ReportEntry(ReportLevel.Warning, "Could not find any rules for project " + proj.Name));
                 return report;
             }
 

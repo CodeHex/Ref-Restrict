@@ -22,6 +22,11 @@ namespace RefRestrict
         /// </summary>
         public bool IsRules { get { return Rules != null; } }
 
+        /// <summary>
+        /// Indicates if any rules have been set
+        /// </summary>
+        public bool IsRulesSet { get { return Rules != null && Rules.Count > 0; } }
+
         public RefRuleSet(List<RefRule> rules)
         {
             Rules = rules;

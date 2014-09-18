@@ -101,7 +101,7 @@ namespace RefRestrict
                         break;
                 }
 
-                Console.WriteLine(prefix + "Ref-Restrict: " + entry.Message);
+                Console.WriteLine(prefix + "REF-RESTRICT: " + entry.Message);
             }
         }
     }

@@ -50,7 +50,7 @@
     <exclude>EntityFramework</exclude>
     <exclude>EntityFramework.SqlServer</exclude>
   </rules>
-  
+
   <!-- The hardware driver library is a low level library that should have no local dependancies -->
   <!-- Since its low-level library there are no restrictions on other references it can use -->
   <rules project="RR.HardwareDriver">

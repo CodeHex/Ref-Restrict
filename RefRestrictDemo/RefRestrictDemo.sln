@@ -17,10 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RR.Installer", "RR.Installe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RR.Service", "RR.Service\RR.Service.csproj", "{36CCAF99-C0E7-4391-93FC-48955FBDC8EF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE7E3458-D031-472C-8F25-382879F8933D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77C69639-A82A-4C1F-955B-15DBAC848482}"
 	ProjectSection(SolutionItems) = preProject
 		RefRestrict.config.xml = RefRestrict.config.xml
-		RefRestrict.exe = RefRestrict.exe
 	EndProjectSection
 EndProject
 Global

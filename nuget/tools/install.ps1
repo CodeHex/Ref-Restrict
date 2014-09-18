@@ -10,7 +10,6 @@ if(!$solutionFolder) {
 	$solutionFolder = $solution.AddSolutionFolder("Solution Items")
 }
 
-
 # Copy the exe solution folder (overwrite any existing exe)
 $refRestrictExe = join-path $installPath 'tools/RefRestrict.exe'
 Copy-Item $refRestrictExe $rootdir
@@ -29,10 +28,6 @@ if(!(Test-Path $configfile)) {
     $solItems.AddFromFile($configfile) > $null
 }
 
-# Remove placeholder file
-$placeholder = $project.ProjectItems | where-object { $_.Name -eq "rrproj.txt" } | select -first 1
-$placeholder.Delete()
-
 # Add section for project
 $configXml = New-Object XML
 $configXml.Load($configfile)
@@ -42,10 +37,3 @@ $ruleData = $configXml.CreateComment("Add rules for project " + $project.Project
 $ruleNode.AppendChild($ruleData) > $null
 $configXml.DocumentElement.AppendChild($ruleNode) > $null
 $configXml.Save($configfile)
-
-
-
-
-
-
-
