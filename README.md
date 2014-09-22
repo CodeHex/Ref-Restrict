@@ -59,7 +59,7 @@ Ref Restrict Rules
 
 **Exclude** - The project **must not** include the specified reference
 ```xml
-<include>System.Timer</include>
+<exclude>System.Timer</exclude>
 ```
 
 Configuration Examples
