@@ -20,11 +20,11 @@ $configfile = $solPath + "\RefRestrict.config.xml"
 
 if(!(Test-Path $configfile)) {
     # Copy blank config file
-	$refRestrictXml = join-path $installPath 'tools/RefRestrict.config.xml'
-	Copy-Item $refRestrictXml $rootdir
-	
-	# Add a file to the Solution Items folder.
-	$solItems = Get-Interface $solutionFolder.ProjectItems ([EnvDTE.ProjectItems])
+    $refRestrictXml = join-path $installPath 'tools/RefRestrict.config.xml'
+    Copy-Item $refRestrictXml $rootdir
+
+    # Add a file to the Solution Items folder.
+    $solItems = Get-Interface $solutionFolder.ProjectItems ([EnvDTE.ProjectItems])
     $solItems.AddFromFile($configfile) > $null
 }
 
