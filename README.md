@@ -66,30 +66,30 @@ Configuration Examples
 ----------------------
 Imagine a Visual studio solution containing the following projects, which are used for a Calculator app.
 
-- Project A - A graphics driver used to render the calculator graphics
-- Project B - A low level custom maths library used to perform some of the calculator operations and graphics calculations
-- Project C - Contains the UI for the application
+- CalcGraphics - A graphics driver used to render the calculator graphics
+- CalcMaths - A low level custom maths library used to perform some of the calculator operations and graphics calculations
+- CalcUI - Contains the UI for the application
  
 The following restrictions need to be applied
-- Project A should only reference project B in the solution and no others. It should also be the only project that uses the Graphics.API third party library
-- Project B must not be referenced by any other projects in the solution (have no local dependacies so it can be used in other solutions).
-- Project C must include Project A to render the UI, but may or may not reference Project B.
+- The graphics driver should only reference the maths library and not the UI project. It should also be the only project that uses the Graphics.API third party library
+- The maths library must not be referenced by any other projects in the solution (have no local dependacies so it can be used in other solutions).
+- The UI project must include the graphics driver to render the UI, but may or may not reference maths library.
 
 This config file will ensure these restrictions are enforced every time the projects are built.
 ```xml
 <rrconfig>
-  <rules project="ProjectA">
+  <rules project="CalcGraphics">
     <onlylocalrefs>
-      <project>Project B</project>
+      <project>CalcMaths</project>
     </onlylocalrefs>
     <include>Graphics.API</include>
   </rules>
-  <rules project="ProjectB">
+  <rules project="CalcMaths">
     <nolocalrefs/>
     <exclude>Graphics.API</exclude>
   </rules>
-  <rules project="ProjectC">
-    <include>ProjectA</include>
+  <rules project="CalcUI">
+    <include>CalcGraphics</include>
     <exclude>Graphics.API</exclude>
   </rules>
 </rrconfig>
