@@ -7,10 +7,11 @@
         <authors>Ben Ibinson</authors>
         <owners>Ben Ibinson</owners>
         <projectUrl>https://github.com/CodeHex/Ref-Restrict</projectUrl>
+        <iconUrl>http://icons.iconarchive.com/icons/hopstarter/plastic-mini/32/Document-Delete-icon.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Provides reference restrictions for projects. Modify the RefRestrict.Config.xml file in to the Solution Items folder to apply reference restrictions that will be checked everytime the project is built.</description>
+        <description>Provides reference restrictions for projects. Modify the RefRestrict.Config.xml file in to the Solution Items folder to apply reference restrictions that will be checked everytime the projects are built.</description>
         <language>en-GB</language>
-        <tags>Reference</tags>
+        <tags>References</tags>
     </metadata>
     <files>
         <file src="build\RefRestrict.targets" target="build\RefRestrict.targets" />
