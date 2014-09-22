@@ -66,9 +66,9 @@ Configuration Examples
 ----------------------
 Imagine a Visual studio solution containing the following projects, which are used for a Calculator app.
 
-- CalcGraphics - A graphics driver used to render the calculator graphics
-- CalcMaths - A low level custom maths library used to perform some of the calculator operations and graphics calculations
-- CalcUI - Contains the UI for the application
+- **CalcGraphics** - A graphics driver used to render the calculator graphics
+- **CalcMaths** - A low level custom maths library used to perform some of the calculator operations and graphics calculations
+- **CalcUI** - Contains the UI for the application
  
 The following restrictions need to be applied
 - The graphics driver should only reference the maths library and not the UI project. It should also be the only project that uses the Graphics.API third party library
