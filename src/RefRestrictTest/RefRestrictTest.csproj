@@ -60,6 +60,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestConfigFiles\RR.WebServer.csproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestConfigFiles\TestConfig_IncludePackageReference.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestConfigFiles\TestConfig_ProjectAlphaSingleRule.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

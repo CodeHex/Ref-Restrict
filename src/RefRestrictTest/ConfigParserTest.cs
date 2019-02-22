@@ -76,11 +76,47 @@ namespace RefRestrictTest
             Assert.IsNotNull(ruleset);
             Assert.IsTrue(ruleset.IsRules);
             Assert.AreEqual(1, ruleset.Rules.Count);
-            
+
             var actRule = ruleset.Rules[0] as MultiRefRule;
             Assert.IsNotNull(actRule);
             Assert.AreEqual(RuleType.OnlyLocalReferences, actRule.Type);
             Assert.AreEqual(0, actRule.Refs.Count);
+        }
+    }
+    [TestClass]
+    public class ProjectFileParserTest
+    {
+        [TestMethod]
+
+        public void GetPackageReferencesWhenTheyExist()
+        {
+            // Arrange
+            var configFile = @"TestConfigFiles\TestConfig_NoProjects.xml";
+            var project = @"TestConfigFiles\RR.WebServer.csproj";
+
+            //Act
+            var projectInfo = ProjectFileParser.GetProjectInfo(project);
+
+            //Assert
+            Assert.IsTrue(projectInfo.NugetRefs.Count > 0);
+        }
+        [TestClass]
+        public class EndToEndTest
+        {
+            [TestMethod]
+            public void AdhereToRulesForPackageReference()
+            {
+                // Arrange
+                var configFile = @"TestConfigFiles\TestConfig_IncludePackageReference.xml";
+                var project = @"TestConfigFiles\RR.WebServer.csproj";
+                var projectInfo = ProjectFileParser.GetProjectInfo(project);
+                var ruleSet = ConfigParser.GetRuleSetForProject(configFile, projectInfo.Name);
+
+                //Act
+                var results = RefAnaylser.GenerateReport(ruleSet, projectInfo);
+                 
+
+            }
         }
     }
 }

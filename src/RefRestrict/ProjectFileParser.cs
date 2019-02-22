@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Xml.Linq;
 
 namespace RefRestrict
@@ -31,11 +27,16 @@ namespace RefRestrict
                                         .Select(x => x.Elements().First(y => y.Name.LocalName == "Name").Value)
                                         .ToList();
 
+            //Determine nuget references
+            var nugetrefs = doc.Descendants().Where(x => x.Name.LocalName == "PackageReference")
+                                        .Select(x => x.Attribute("Include").Value)
+                                        .ToList();
+
             var projName = doc.Descendants()
                               .First(x => x.Name.LocalName == "AssemblyName")
                               .Value;
-
-            return new ProjectInfo(projName, refs, projrefs);
+            
+            return new ProjectInfo(projName, refs, projrefs, nugetrefs);
         }
     }
 }
