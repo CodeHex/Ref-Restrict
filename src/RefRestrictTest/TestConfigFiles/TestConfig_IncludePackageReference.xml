@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rrconfig>
+  <rules project="RR.WebServer">
+    <include>NUnit</include>  
+  </rules>
+</rrconfig>

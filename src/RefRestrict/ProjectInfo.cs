@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RefRestrict
 {
@@ -26,11 +22,18 @@ namespace RefRestrict
         /// </summary>
         public List<string> ProjectRefs { get; private set; }
 
-        public ProjectInfo(string name, List<string> refs, List<string> projectRefs)
+        /// <summary>
+        /// The nuget references of the project (references pulled in from nuget feeds)
+        /// </summary>
+        public List<string> NugetRefs { get; private set; }
+
+
+        public ProjectInfo(string name, List<string> refs, List<string> projectRefs, List<string> nugetRefs)
         {
             Name = name;
             Refs = refs;
             ProjectRefs = projectRefs;
+            NugetRefs = nugetRefs;
         }
     }
 }
