@@ -26,7 +26,7 @@ namespace RefRestrict
             {
                 var includeRule = rule as SingleRefRule;
                 // Check if ref is included in either the local or global references
-                var isRefIncluded = project.Refs.Contains(includeRule.Ref) || project.ProjectRefs.Contains(includeRule.Ref);
+                var isRefIncluded = project.Refs.Contains(includeRule.Ref) || project.ProjectRefs.Contains(includeRule.Ref) || project.NugetRefs.Contains(includeRule.Ref);
                 if (!isRefIncluded)
                     errorMessage = includeRule.Ref + " is required to be referenced in project " + project.Name;
                 return isRefIncluded; 
@@ -36,7 +36,7 @@ namespace RefRestrict
             {
                 var excludeRule = rule as SingleRefRule;
                 // Check if the ref is not in either the global or local references
-                var isRefExcluded = !project.Refs.Contains(excludeRule.Ref) && !project.ProjectRefs.Contains(excludeRule.Ref);
+                var isRefExcluded = !project.Refs.Contains(excludeRule.Ref) && !project.ProjectRefs.Contains(excludeRule.Ref) && !project.NugetRefs.Contains(excludeRule.Ref);
                 if (!isRefExcluded)
                     errorMessage = excludeRule.Ref + " should not be a reference in project " + project.Name;
                 return isRefExcluded;
